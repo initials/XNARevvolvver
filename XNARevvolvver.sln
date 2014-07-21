@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNARevvolvver", "XNARevvolvver\XNARevvolvver\XNARevvolvver.csproj", "{30E6F500-8047-476A-9903-2C4D37D34777}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "XNARevvolvverContent", "XNARevvolvver\XNARevvolvverContent\XNARevvolvverContent.contentproj", "{9D88A9B0-63E7-4FFC-91CB-ED13DEBA6EC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30E6F500-8047-476A-9903-2C4D37D34777}.Debug|x86.ActiveCfg = Debug|x86
+		{30E6F500-8047-476A-9903-2C4D37D34777}.Debug|x86.Build.0 = Debug|x86
+		{30E6F500-8047-476A-9903-2C4D37D34777}.Release|x86.ActiveCfg = Release|x86
+		{30E6F500-8047-476A-9903-2C4D37D34777}.Release|x86.Build.0 = Release|x86
+		{9D88A9B0-63E7-4FFC-91CB-ED13DEBA6EC1}.Debug|x86.ActiveCfg = Debug|x86
+		{9D88A9B0-63E7-4FFC-91CB-ED13DEBA6EC1}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
