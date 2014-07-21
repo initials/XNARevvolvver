@@ -50,3 +50,6 @@ Icon
 .Trashes
 
 *.suo
+XNARevvolvver/XNARevvolvverContent/obj/x86/Debug/
+XNARevvolvver/XNARevvolvverContent/obj/x86/Debug/XNARevvolvverContent.contentproj.FileListAbsolute.txt
+XNARevvolvver/XNARevvolvverContent/obj/x86/Debug/XNARevvolvverContent.contentprojResolveAssemblyReference.cache
