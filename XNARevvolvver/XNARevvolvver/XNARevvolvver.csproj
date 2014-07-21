@@ -161,15 +161,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Revvolvver\level1.oel" />
-    <None Include="Revvolvver\level1OUYA.oel" />
-    <None Include="Revvolvver\level2.oel" />
-    <None Include="Revvolvver\level3.oel" />
-    <None Include="Revvolvver\level4.oel" />
-    <None Include="Revvolvver\level5.oel" />
-    <None Include="Revvolvver\level6.oel" />
-    <None Include="Revvolvver\level7.oel" />
-    <None Include="Revvolvver\level8.oel" />
-    <None Include="Revvolvver\level9.oel" />
+    <None Include="Revvolvver\level1OUYA.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level2.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level3.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level4.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level5.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level6.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level7.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level8.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Revvolvver\level9.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Revvolvver\level_template.oel" />
     <None Include="Revvolvver\RevvolvverProject.oep" />
     <None Include="Revvolvver\titlescreen.oel">
