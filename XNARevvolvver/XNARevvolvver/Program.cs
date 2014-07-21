@@ -1,21 +1,45 @@
-using System;
+#region File Description
+//-----------------------------------------------------------------------------
+// Flixel for XNA.
+// Original repo : https://github.com/StAidan/X-flixel
+// Extended and edited repo : https://github.com/initials/XNAMode
+//-----------------------------------------------------------------------------
+#endregion
 
-namespace XNARevvolvver
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using org.flixel;
+using Microsoft.Xna.Framework;
+
+namespace Loader_Revvolvver
 {
-#if WINDOWS || XBOX
-    static class Program
+    /// <summary>
+    /// Flixel enters here.
+    /// <code>FlxFactory</code> refers to it as the "masterclass".
+    /// </summary>
+    public class FlixelEntryPoint2 : FlxGame
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main(string[] args)
+        public FlixelEntryPoint2(Game game)
+            : base(game)
         {
-            using (Game1 game = new Game1())
-            {
-                game.Run();
-            }
+
+            Console.WriteLine("Revvolvver Entry Point");
+
+            int w = FlxG.resolutionWidth/FlxG.zoom;
+            int h = FlxG.resolutionHeight / FlxG.zoom;
+
+            initGame(w, h, new Revvolvver.MenuState(), new Color(15, 15, 15), true, new Color(5, 5, 5));
+
+            FlxG.debug = false;
+            //FlxG.zoom = FlxG.resolutionWidth / w;
+            FlxG.level = -1;
+
+            //FourChambers_Globals.BUILD_TYPE = FourChambers_Globals.BUILD_TYPE_RELEASE;
+            //FourChambers_Globals.DEMO_VERSION = false;
+            //FourChambers_Globals.PIRATE_COPY = false;
+
         }
     }
-#endif
 }
-

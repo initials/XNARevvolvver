@@ -1,91 +1,119 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
+#if !WINDOWS_PHONE
+//using Microsoft.Xna.Framework.GamerServices;
+#endif
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace XNARevvolvver
+using org.flixel;
+using System.IO;
+
+namespace Loader_Revvolvver
 {
     /// <summary>
-    /// This is the main type for your game
+    /// Starts the game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class FlxFactory : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        //graphics management
+        public GraphicsDeviceManager _graphics;
+        //other variables
+        private FlxGame _flixelgame;
 
-        public Game1()
+        //nothing much to see here, typical XNA initialization code
+        public FlxFactory()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-        }
+            //Read the GAMESETTINGS.txt file
 
+            string gameSettings = File.ReadAllText("GAMESETTINGS.txt");
+            string[] splitter = gameSettings.Split('\n');
+            //Console.WriteLine(splitter[0]);
+
+            FlxG.resolutionWidth = Convert.ToInt32(splitter[0].Substring(2));
+            FlxG.resolutionHeight = Convert.ToInt32(splitter[1].Substring(2));
+            if (splitter[2].Substring(11).StartsWith("1"))
+                FlxG.fullscreen = true;
+            FlxG.zoom = Convert.ToInt32(splitter[3].Substring(5));
+
+
+            //set up the graphics device and the content manager
+            _graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+
+            if (FlxG.fullscreen)
+            {
+                //resX = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                //resY = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                if (GraphicsAdapter.DefaultAdapter.IsWideScreen)
+                {
+                    //if user has it set to widescreen, let's make sure this
+                    //is ACTUALLY a widescreen resolution.
+                    if (((FlxG.resolutionWidth / 16) * 9) != FlxG.resolutionHeight)
+                    {
+                        FlxG.resolutionWidth = (FlxG.resolutionHeight / 9) * 16;
+                    }
+                }
+            }
+
+            //we don't need no new-fangled pixel processing
+            //in our retro engine!
+            _graphics.PreferMultiSampling = false;
+            //set preferred screen resolution. This is NOT
+            //the same thing as the game's actual resolution.
+            _graphics.PreferredBackBufferWidth = FlxG.resolutionWidth;
+            _graphics.PreferredBackBufferHeight = FlxG.resolutionHeight;
+            //make sure we're actually running fullscreen if
+            //fullscreen preference is set.
+            if (FlxG.fullscreen && _graphics.IsFullScreen == false)
+            {
+                _graphics.ToggleFullScreen();
+            }
+            _graphics.ApplyChanges();
+
+            Console.WriteLine("Running Game at Settings: {0}x{1} Fullscreen?:{2} // Preferrred {3} {4}", FlxG.resolutionWidth, FlxG.resolutionHeight, FlxG.fullscreen, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+
+            FlxG.Game = this;
+#if !WINDOWS_PHONE
+            //Components.Add(new GamerServicesComponent(this));
+#endif
+        }
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// load up the master class, and away we go!
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            //load up the master class, and away we go!
+
+            //_flixelgame = new FlxGame();
+            _flixelgame = new FlixelEntryPoint2(this);
+
+            FlxG.bloom = new BloomPostprocess.BloomComponent(this);
+
+            Components.Add(_flixelgame);
+            Components.Add(FlxG.bloom);
 
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
+    }
+
+    #region Application entry point
+
+    static class Program
+    {
+        //application entry point
+        static void Main(string[] args)
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
-            base.Draw(gameTime);
+            using (FlxFactory game = new FlxFactory())
+            {
+                game.Run();
+            }
         }
     }
+
+    #endregion
 }
