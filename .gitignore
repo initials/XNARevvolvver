@@ -14,6 +14,20 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+XNARevvolvver/XNARevvolvver/XNARevvolvver/bin/
+XNARevvolvver/XNARevvolvver/XNARevvolvver/obj/
+XNARevvolvver/XNARevvolvver/XNARevvolvver/bin/*
+XNARevvolvver/XNARevvolvver/XNARevvolvver/obj/*
+
+XNARevvolvver/XNARevvolvver/bin/
+XNARevvolvver/XNARevvolvver/obj/
+XNARevvolvver/XNARevvolvver/bin/*
+XNARevvolvver/XNARevvolvver/obj/*
+
+
+
+
+
 # =========================
 # Operating System Files
 # =========================
